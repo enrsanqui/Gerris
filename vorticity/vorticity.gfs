@@ -1,0 +1,19 @@
+1 2 GfsSimulation GfsBox GfsGEdge {} {
+GfsTime { end = 50 }
+GfsRefine 6
+GfsInit {}{
+	U = (0.5-rand()/(double)RAND_MAX)
+	V = (0.5-rand()/(double)RAND_MAX)
+}
+GfsOutputTime	{ istep = 10 } stdout
+GfsOutputProjectionStats  { istep = 10 } stdout
+GfsOutputScalarStats	  { istep = 10 } stdout { v = Vorticity }
+GfsOutputPPM		  { step = 1} vorticity-%4.1f.ppm {
+			  v = Vorticity
+			  min = -10
+			  max = 10
+			  }
+}
+GfsBox {}
+1 1 right
+1 1 top
